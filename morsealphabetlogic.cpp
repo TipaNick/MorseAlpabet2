@@ -95,13 +95,20 @@ MorseAlphabetLogic::MorseAlphabetLogic()
     fromMorseMap[".--.-."] = '@';
 }
 
-QString MorseAlphabetLogic::autoTranslate(QString message){
-    QRegExp rx("([A-Z]+|[,?`!/()&:;=+\"%@])");
-    int pos = rx.indexIn(message.toUpper());
-    if (pos > -1) {
-        return toMorse(message);
+bool MorseAlphabetLogic::isMorseMessage(QString message){
+    for(int i = 0; i < message.size(); i++){
+        if (message.at(i) != '.' && message.at(i) != '-' && message.at(i) != ' ') {
+            return false;
+        }
     }
-    return fromMorse(message);
+    return true;
+}
+
+QString MorseAlphabetLogic::autoTranslate(QString message){
+    if (isMorseMessage(message)) {
+        return fromMorse(message);
+    }
+    return toMorse(message);
 }
 
 //    Проверяем все символы строки

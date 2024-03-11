@@ -21,9 +21,12 @@ private:
 signals:
 
 public slots:
+    QString autoTranslate(QString message);
+
+private slots:
     QString fromMorse(QString message);
     QString toMorse(QString message);
-    QString autoTranslate(QString message);
+    bool isMorseMessage(QString message);
 };
 
 #endif // MORSEALPHABETLOGIC_H
