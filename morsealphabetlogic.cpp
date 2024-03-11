@@ -2,7 +2,7 @@
 
 MorseAlphabetLogic::MorseAlphabetLogic()
 {
-    //Init toMorseMap
+    //Заполняем хэш для перевода в Азбуку Морзе
     toMorseMap['A'] = ".-";
     toMorseMap['B'] = "-...";
     toMorseMap['C'] = "-.-.";
@@ -48,7 +48,7 @@ MorseAlphabetLogic::MorseAlphabetLogic()
     toMorseMap['$'] = "...-..-";
     toMorseMap['@'] = ".--.-.";
 
-    //Init fromMorseMap
+    //Заполняем хэш для перевода из Азбуки Морзе
     fromMorseMap[".-"] = 'A';
     fromMorseMap["-..."] = 'B';
     fromMorseMap["-.-."] = 'C';
@@ -95,19 +95,18 @@ MorseAlphabetLogic::MorseAlphabetLogic()
     fromMorseMap[".--.-."] = '@';
 }
 
+//Если встречается не точка и не тире, то возвращаем false, иначе true
 bool MorseAlphabetLogic::isMorseMessage(QString message){
-    for(int i = 0; i < message.size(); i++){
-        if (message.at(i) != '.' && message.at(i) != '-' && message.at(i) != ' ') {
+    for(int i = 0; i < message.size(); i++)
+        if (message.at(i) != '.' && message.at(i) != '-' && message.at(i) != ' ')
             return false;
-        }
-    }
     return true;
 }
 
+//Если нет латинских букв, то вызываем метод fromMorse, иначе toMorse
 QString MorseAlphabetLogic::autoTranslate(QString message){
-    if (isMorseMessage(message)) {
+    if (isMorseMessage(message))
         return fromMorse(message);
-    }
     return toMorse(message);
 }
 
@@ -137,6 +136,7 @@ QString MorseAlphabetLogic::fromMorse(QString message){
     return result;
 }
 
+//Если символ не пробел, то берем значение из хэша и записываем в результат, иначе записываем пробел в результат
 QString MorseAlphabetLogic::toMorse(QString message) {
     QString result;
     for (int i = 0; i < message.size(); i++){

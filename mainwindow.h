@@ -20,14 +20,11 @@ public:
 private slots:
 
     void on_cryptedTextEdit_textChanged();
-
     void on_save_triggered();
-
     void on_load_triggered();
 
 private:
     Ui::MainWindow *ui;
-
     MorseAlphabetLogic *morsetranslator = new MorseAlphabetLogic();
 };
 #endif // MAINWINDOW_H
